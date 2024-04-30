@@ -26,3 +26,9 @@ ORDER by cantidad_de_ciudades DESC
 7)
 SELECT max(return_date) as actual, min(return_date) as vieja  FROM rental
 8)
+SELECT title , count(actor_id) as cant_actor from film f
+JOIN film_actor a on f.film_id = a.actor_id
+GROUP by a.actor_id
+ORDER by  cant_actor ASC
+limit 10 
+
