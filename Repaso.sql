@@ -1,17 +1,17 @@
-consultas de seleccion (SELECT)
+--consultas de seleccion (SELECT)
 
-combinacion de tablas (JOIN y on)
+--combinacion de tablas (JOIN y on)
 
  SELECT name, Composer, milliseconds  from tracks t
 join albums a ON t.AlbumId = a.AlbumId
 
-eliminacion de repetidos (DISTINCT)
+--eliminacion de repetidos (DISTINCT)
 
 SELECT DISTINCT BillingCity FROM invoices 
 WHERE BillingState is not NULL 
 ORDER BY BillingCity DESC;
 
-agrupamientos (GROUP BY)
+--agrupamientos (GROUP BY)
 
 SELECT city, c.country FROM city p
 JOIN country c on p.country_id = c.country_id
@@ -26,7 +26,7 @@ SELECT country_name, r.region_name FROM countries c
 JOIN regions r on c.region_id = r.region_id
 GROUP by c.country_id 
 
-filtrado (WHERE and HAVING)
+--filtrado (WHERE and HAVING)
 HAVING = GROUP by
 WHERE =  sin GROUP
 
@@ -105,3 +105,28 @@ LIMIT 3; -- trae los primeros 3
  -- ORDER BY 
  -- ASC ordena de forma asencidiente : de menor a mayor
  -- DESC ordena de forma desendiente : de may
+
+ -- LEFT JOIN mantiene todas las filas de la tabla izquierda (la tabla1). Las filas de la tabla derecha se mostrarán si hay una 
+ --coincidencia con las de la izquierda. Si existen valores en la tabla izquierda pero no en la tabla derecha, ésta mostrará null.
+
+SELECT nombreColumna(s)
+FROM tabla1
+LEFT JOIN tabla2
+ON tabla1.nombreColumna=tabla2.nombreColumna;
+
+-- osea aca inculye el null pq si o si la columna izquierda va aparecer y si del otro lado derecho no tiene valor da null
+
+SELECT Clientes.NombreCliente, Pedidos.PedidoID
+FROM Clientes LEFT JOIN Pedidos
+ON Clientes.ClienteID=Pedidos.ClienteID
+ORDER BY Clientes.NombreCliente;
+
+-- aca el izquierdo que es el q prepone es ek cliente.nombreCliente
+--*
+NombreCliente 	PedidoID
+Ebbe Therese   	236
+Lydia Roderic 	235
+Marco Lambert  (null)
+Sofie Mariona 	234
+Sofie Mariona 	237
+--*
