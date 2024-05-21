@@ -5,3 +5,5 @@ WHERE  membership_start_date like '2017%'
 GROUP by ssn
 HAVING date > 1
 ORDER by membership_status ASC, ssn DESC
+
+-- aca me confundi al usar la informacion de tabla donde no era
