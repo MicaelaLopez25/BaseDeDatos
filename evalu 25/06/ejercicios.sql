@@ -22,16 +22,14 @@ UPDATE employees set phone_number = '111.222.3344'
 WHERE phone_number is NULL
 
 --  4 
-
-UPDATE employees set salary = salary + ( salary * 0.2)
-WHERE salary = 
- (SELECT first_name, salary, job_title FROM employees e
-JOIN departments d on e.department_id = d.department_id
-JOIN jobs j on e.job_id = j.job_id
-WHERE salary <= '8000' and job_title = 'Programmer' or job_title = 'Purchasing Clerk')
-
--- En este caso me funciona la sub consulta y la parte del incremento del 20% por separadp pero cuando lo junto todo me da error
--- supongo que es algo por el where o el despues del set
+UPDATE employees 
+SET salary = salary + (salary * 0.2)
+WHERE salary IN (
+    SELECT salary FROM employees e
+    JOIN departments d ON e.department_id = d.department_id
+    JOIN jobs j ON e.job_id = j.job_id
+    WHERE salary <= 8000 AND (job_title = 'Programmer' OR job_title = 'Purchasing Clerk')
+);
 
 -- 5
 INSERT INTO locations (street_address, city,state_province, country_id)
